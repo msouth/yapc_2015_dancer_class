@@ -47,6 +47,8 @@ get '/greet/:name' => sub {
     template 'greet_person' => {persons_name => $name };
 };
 
+=pod
+
 my @games = (
     {
         name => 'Puerto Rico',
@@ -62,10 +64,13 @@ my @games = (
     },
 );
 
+=cut
+
+use BS;
+my $bs = BS->new;
+
 get '/games' => sub {
-
-
-    template games => {games=>\@games};
+    template games => {games=>$bs->games};
 };
 
 true;

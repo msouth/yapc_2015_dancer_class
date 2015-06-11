@@ -3,7 +3,7 @@ vim: set ft=html:
 -->
 <table border=1>
 <tr>
-    <th>Name</th><th>Status</th><th>Players</th><th>Max Players</th>
+    <th>Name</th><th>Status</th><th>Players</th>
 </tr>
 <% FOREACH game = games %>
 <tr>
@@ -14,10 +14,7 @@ vim: set ft=html:
         <b><% game.status %>
     </td>
     <td>
-        <b><% game.players.join(',') %>
-    </td>
-    <td>
-        <b><% game.max_players %>
+        <% game.num_players %> / <% game.max_players %>
     </td>
 </tr>
 <% END %>
