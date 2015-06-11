@@ -74,4 +74,14 @@ get '/games' => sub {
     template games_template => {games_template_var=>$bs->games};
 };
 
+#get '/new_game' =>  sub {
+    #$bs->new_game( param('name') );
+    #redirect '/games';
+#};
+
+any ['get','post'] => '/new_game' =>  sub {
+    $bs->new_game( param('name') );
+    redirect '/games';
+};
+
 true;

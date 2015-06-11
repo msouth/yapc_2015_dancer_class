@@ -1,6 +1,11 @@
 <!--
 vim: set ft=html:
 -->
+<form method="POST" action="/new_game">
+    <input type="text" name="name"></input>
+    <input type="submit" value="Create New Game">
+</form>
+
 <table border=1>
 <tr>
     <th>Name</th><th>Status</th><th>Players</th>
