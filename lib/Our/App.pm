@@ -88,8 +88,16 @@ get '/login' => sub {
     template 'login_template'
 };
 
-post '/login' => sub { 
-    $bs->new_player( param('player_name') );
+post '/login' => sub {
+    my $player = $bs->new_player( param('player_name') );
+    session user=>$player;
+    redirect '/games';
+};
+
+get '/logout' => sub {
+    #my $session = session;
+    session user=>undef;
+    # this works, but no one knows what it's doing $session->delete;#('user');
     redirect '/games';
 };
 

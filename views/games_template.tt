@@ -1,7 +1,12 @@
 <!--
 vim: set ft=html:
 -->
+<% IF session.user %>
+<h3>Hello <b><% session.user.username %></b></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/logout">Log out</a>
+<p/>
+<% ELSE %>
 <a href='/login'> Log in </a>
+<% END %>
 <form method="POST" action="/new_game">
     <input type="text" name="name" placeholder="Enter name for game"></input>
     <input type="submit" value="Create New Game">
