@@ -3,6 +3,8 @@ use Dancer2;
 
 our $VERSION = '0.1';
 
+set auto_page => 1;
+
 get '/' => sub {
     template 'index';
 };
@@ -97,7 +99,24 @@ post '/login' => sub {
 get '/logout' => sub {
     #my $session = session;
     session user=>undef;
+    session game_id => undef;
     # this works, but no one knows what it's doing $session->delete;#('user');
+    redirect '/games';
+};
+
+get '/join/:game_id' => sub {
+    my $game_id = param('game_id');
+    my $player = session('user');
+    $bs->join_game( $game_id, $player );
+    session game_id => $game_id;
+    redirect '/games';
+};
+
+get '/leave/:game_id' => sub {
+    my $game_id = param('game_id');
+    my $player = session('user');
+    $bs->leave_game( $game_id, $player );
+    session game_id => undef;
     redirect '/games';
 };
 

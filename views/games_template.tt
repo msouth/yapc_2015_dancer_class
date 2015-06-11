@@ -2,6 +2,7 @@
 vim: set ft=html:
 -->
 <% IF session.user %>
+<% SET username=session.user.username %>
 <h3>Hello <b><% session.user.username %></b></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/logout">Log out</a>
 <p/>
 <% ELSE %>
@@ -14,7 +15,7 @@ vim: set ft=html:
 
 <table border=1>
 <tr>
-    <th>Name</th><th>Status</th><th>Players</th>
+    <th>Name</th><th>Status</th><th>Players</th><th>Action</th>
 </tr>
 <% FOREACH game = games_template_var %>
 <tr>
@@ -26,6 +27,16 @@ vim: set ft=html:
     </td>
     <td>
         <% game.num_players %> / <% game.max_players %>
+    </td>
+    <td>
+        <% IF username %>
+            <% IF game.id == session.game_id %>
+                <a href="/leave/<% game.id %>">leave</a>
+            <% ELSE %>
+                <a href="/join/<% game.id %>">join</a>
+            <% END %>
+        <% END %>
+
     </td>
 </tr>
 <% END %>
