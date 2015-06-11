@@ -27,12 +27,14 @@ any ['get','post'] => '/either' => sub {
 
 get '/list_things/**' => sub {
     #my @stuff = splat();
-    #foreach my $item (@$stuff) {
-    #    $output.="$item\n";
-    #}
 
     #my $output = '';
+    #BAD my $stuff = @{ splat };
     my @stuff = splat();
+#    my $all_stuff 
+#    foreach my $item (@$stuff) {
+#        $output.="$item\n";
+#    }
     use Data::Dumper;
     return Dumper(\@stuff);
 };
@@ -43,6 +45,26 @@ get '/list_things/**' => sub {
 get '/greet/:name' => sub {
     my $name = param('name');
     template 'greet_person' => {persons_name => $name };
+};
+
+get '/games' => sub {
+
+    my @games = (
+        {
+            name => 'Puerto Rico',
+            status => 'open',
+            players => [ 'Bob', 'Sally'],
+            max_players => 5,
+        },
+        {
+            name => 'Ticket to Ride',
+            status => 'open',
+            players => [ 'Billy', 'James'],
+            max_players => 6,
+        },
+    );
+
+    template games => {games=>\@games};
 };
 
 true;
