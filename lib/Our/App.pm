@@ -107,6 +107,14 @@ get '/logout' => sub {
 get '/join/:game_id' => sub {
     my $game_id = param('game_id');
     my $player = session('user');
+
+    # NOTE:  we need to leave any game we might be in
+    # now, or they will not decrement the count...or
+    # come out of the structure at all, maybe  -- Gary
+    if (my $existing_game_id = session('game_id')) {
+        $bs->leave_game( $existing_game_id, $player );
+    }
+
     $bs->join_game( $game_id, $player );
     session game_id => $game_id;
     redirect '/games';
