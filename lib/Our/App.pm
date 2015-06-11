@@ -21,6 +21,10 @@ post '/user' => sub {
     return "I saved $input_user";
 };
 
+any ['get','post'] => '/either' => sub {
+    return request->method. "\n";
+};
+
 #get '/greet/:name/job/:position' => sub {
 #param('name');
 
