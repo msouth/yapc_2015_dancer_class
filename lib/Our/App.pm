@@ -120,4 +120,12 @@ get '/leave/:game_id' => sub {
     redirect '/games';
 };
 
+get '/game/:game_id' => sub {
+    my $game_id = param('game_id');
+
+    my $game_object = $bs->get_game($game_id);
+
+    template 'view_one_game'=>{game_template_var => $game_object};
+};
+
 true;

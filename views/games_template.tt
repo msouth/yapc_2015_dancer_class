@@ -20,7 +20,7 @@ vim: set ft=html:
 <% FOREACH game = games_template_var %>
 <tr>
     <td>
-        <b><% game.name %>
+        <b><a href="/game/<% game.id %>"><% game.name %></a>
     </td>
     <td>
         <b><% game.status %>

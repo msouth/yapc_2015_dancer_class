@@ -1,0 +1,7 @@
+Game: <% game_template_var.name %>
+<% SET players = game_template_var.players %>
+<ul>
+<% FOREACH username IN players.keys %>
+<li> Player <% username %> has role: <% players.$username.role%> </li>
+<% END %>
+</ul>
