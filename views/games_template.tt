@@ -5,7 +5,7 @@ vim: set ft=html:
 <tr>
     <th>Name</th><th>Status</th><th>Players</th>
 </tr>
-<% FOREACH game = games %>
+<% FOREACH game = games_template_var %>
 <tr>
     <td>
         <b><% game.name %>

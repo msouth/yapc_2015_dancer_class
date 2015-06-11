@@ -70,7 +70,8 @@ use BS;
 my $bs = BS->new;
 
 get '/games' => sub {
-    template games => {games=>$bs->games};
+    # look in views/ for games_template.tt
+    template games_template => {games_template_var=>$bs->games};
 };
 
 true;
