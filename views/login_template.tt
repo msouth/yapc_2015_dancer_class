@@ -1,0 +1,6 @@
+<form method="POST">
+<input type="text" name="player_name" placeholder="Enter your name"></input>
+<input type="submit" value="Log In">
+<p/>
+<small>Unauthorized login will be greeted by us turning your table over.  We're right up here at the front after all</small>
+</form>

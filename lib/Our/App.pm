@@ -84,4 +84,13 @@ any ['get','post'] => '/new_game' =>  sub {
     redirect '/games';
 };
 
+get '/login' => sub {
+    template 'login_template'
+};
+
+post '/login' => sub { 
+    $bs->new_player( param('player_name') );
+    redirect '/games';
+};
+
 true;
