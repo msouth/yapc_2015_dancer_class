@@ -1,6 +1,7 @@
 <!--
 vim: set ft=html:
 -->
+<a href='/login'> Log in </a>
 <form method="POST" action="/new_game">
     <input type="text" name="name" placeholder="Enter name for game"></input>
     <input type="submit" value="Create New Game">
