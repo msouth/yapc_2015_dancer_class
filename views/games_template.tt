@@ -5,40 +5,40 @@ vim: set ft=html:
 <% SET username=session.user.username %>
 <h3>Hello <b><% session.user.username %></b></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/logout">Log out</a>
 <p/>
-<% ELSE %>
-<a href='/login'> Log in </a>
-<% END %>
-<form method="POST" action="/new_game">
-    <input type="text" name="name" placeholder="Enter name for game"></input>
-    <input type="submit" value="Create New Game">
-</form>
+    <form method="POST" action="/new_game">
+        <input type="text" name="name" placeholder="Enter name for game"></input>
+        <input type="submit" value="Create New Game">
+    </form>
 
-<table border=1>
-<tr>
-    <th>Name</th><th>Status</th><th>Players</th><th>Action</th>
-</tr>
-<% FOREACH game = games_template_var %>
-<tr>
-    <td>
-        <b><a href="/game/<% game.id %>"><% game.name %></a>
-    </td>
-    <td>
-        <b><% game.status %>
-    </td>
-    <td>
-        <% game.num_players %> / <% game.max_players %>
-    </td>
-    <td>
-        <% IF username %>
-            <% IF game.id == session.game_id %>
-                <a href="/leave/<% game.id %>">leave</a>
-            <% ELSE %>
-                <a href="/join/<% game.id %>">join</a>
+    <table border=1>
+    <tr>
+        <th>Name</th><th>Status</th><th>Players</th><th>Action</th>
+    </tr>
+    <% FOREACH game = games_template_var %>
+    <tr>
+        <td>
+            <b><a href="/game/<% game.id %>"><% game.name %></a>
+        </td>
+        <td>
+            <b><% game.status %>
+        </td>
+        <td>
+            <% game.num_players %> / <% game.max_players %>
+        </td>
+        <td>
+            <% IF username %>
+                <% IF game.id == session.game_id %>
+                    <a href="/leave/<% game.id %>">leave</a>
+                <% ELSE %>
+                    <a href="/join/<% game.id %>">join</a>
+                <% END %>
             <% END %>
-        <% END %>
 
-    </td>
-</tr>
+        </td>
+    </tr>
+    <% END %>
+
+    </table>
+<% ELSE %>
+    <a href='/login'> Log in </a>
 <% END %>
-
-</table>
