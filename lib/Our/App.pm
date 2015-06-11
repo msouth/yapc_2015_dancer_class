@@ -25,6 +25,18 @@ any ['get','post'] => '/either' => sub {
     return request->method. "\n";
 };
 
+get '/list_things/**' => sub {
+    #my @stuff = splat();
+    #foreach my $item (@$stuff) {
+    #    $output.="$item\n";
+    #}
+
+    #my $output = '';
+    my @stuff = splat();
+    use Data::Dumper;
+    return Dumper(\@stuff);
+};
+
 #get '/greet/:name/job/:position' => sub {
 #param('name');
 
