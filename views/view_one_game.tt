@@ -1,3 +1,4 @@
+<a href="/games">Back to main page</a><p/>
 Game: <% game_template_var.name %>
 <% SET players = game_template_var.players %>
 <ul>
