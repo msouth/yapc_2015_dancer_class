@@ -47,22 +47,23 @@ get '/greet/:name' => sub {
     template 'greet_person' => {persons_name => $name };
 };
 
+my @games = (
+    {
+        name => 'Puerto Rico',
+        status => 'open',
+        players => [ 'Bob', 'Sally'],
+        max_players => 5,
+    },
+    {
+        name => 'Ticket to Ride',
+        status => 'open',
+        players => [ 'Billy', 'James'],
+        max_players => 6,
+    },
+);
+
 get '/games' => sub {
 
-    my @games = (
-        {
-            name => 'Puerto Rico',
-            status => 'open',
-            players => [ 'Bob', 'Sally'],
-            max_players => 5,
-        },
-        {
-            name => 'Ticket to Ride',
-            status => 'open',
-            players => [ 'Billy', 'James'],
-            max_players => 6,
-        },
-    );
 
     template games => {games=>\@games};
 };
