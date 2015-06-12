@@ -8,18 +8,24 @@ Game: <% game_template_var.name %>
 </ul>
 
 Questions so far:<p/>
-<ul>
+<table border="1">
+<tr>
+<th> Question </th><th> Answer </th>
+</tr>
     <% FOREACH question IN game_template_var.questions %>
-    <li> Question: <% question.question %>
-    <li> Answer: <% question.answer %>
-        <% IF session.user.role=='story_teller' %>
-            <% FOREACH possible_answer IN ['Yes', 'No', 'Unknown', 'Win'] %>
-                <a href="/question/<% question.id %>/answer/<% possible_answer %>"><% possible_answer %></a>
-                <% UNLESS loop.last %>| <% END %>
+    <tr>
+        <td> Question: <% question.question %></td>
+        <td> Answer: <% question.answer %>
+            <% IF session.user.role=='story_teller' %>
+                <% FOREACH possible_answer IN ['Yes', 'No', 'Unknown', 'Win'] %>
+                    <a href="/question/<% question.id %>/answer/<% possible_answer %>"><% possible_answer %></a>
+                    <% UNLESS loop.last %>| <% END %>
+                <% END %>
             <% END %>
         <% END %>
-    <% END %>
-</ul>
+        </td>
+    </tr>
+</table>
 
 
 <% IF session.user.role == 'player' %>
