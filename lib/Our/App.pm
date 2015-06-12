@@ -136,4 +136,25 @@ get '/game/:game_id' => sub {
     template 'view_one_game'=>{game_template_var => $game_object};
 };
 
+# this is defined on this url just because it makes it easy for the
+# "ask a new question" form to be on the game page.  It should
+# really be something like "/game/:game_id/ask" or something
+# like that.
+
+post '/game/:game_id' => sub {
+    my $game_id = session('game_id');
+    my $question = param('question');
+    $bs->ask_question( $game_id, $question );
+    redirect '/game/'.$game_id;
+};
+
+get '/question/:question_id/answer/:answer' => sub {
+    my $game_id = session 'game_id';
+    my $question_id = param 'question_id';
+    my $answer = param 'answer';
+    $bs->answer_question($game_id, $question_id, $answer);
+    debug(" here: ($game_id, $question_id, $answer);");
+    redirect '/game/'.$game_id;
+};
+
 true;

@@ -6,3 +6,25 @@ Game: <% game_template_var.name %>
 <li> Player <% username %> has role: <% players.$username.role%> </li>
 <% END %>
 </ul>
+
+Questions so far:<p/>
+<ul>
+    <% FOREACH question IN game_template_var.questions %>
+    <li> Question: <% question.question %>
+    <li> Answer: <% question.answer %>
+        <% IF session.user.role=='story_teller' %>
+            <% FOREACH possible_answer IN ['Yes', 'No', 'Unknown', 'Win'] %>
+                <a href="/question/<% question.id %>/answer/<% possible_answer %>"><% possible_answer %></a>
+                <% UNLESS loop.last %>| <% END %>
+            <% END %>
+        <% END %>
+    <% END %>
+</ul>
+
+
+<% IF session.user.role == 'player' %>
+    <form method="POST">
+        <input type="text" name="question" length="80" placeholder="Enter your next question, petitioner!"></input>
+        <input type="submit" name="Ask Away!">
+    </form>
+<% END %>
